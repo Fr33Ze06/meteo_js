@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Météo</title>
-  <link rel="stylesheet" href="meteo.css">
-  <script src="meteo.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Météo</title>
+    <link rel="stylesheet" href="meteo.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="meteo.js"></script>
+  </head>
+  
 <body>
   <header>
     <h1>Météo</h1>
@@ -14,10 +17,11 @@
 
   <main>
     <div class="search-bar">
-        <form class="formSearch">
-          <input id="search-input"  class="-search" type="search" placeholder="Rechercher votre artiste" name="search">
-        </form>
-        <button>Rechercher</button>
+      <form id="city-form">
+        <label for="city-input">Ville :</label>
+        <input type="text" id="city-input" required>
+        <button type="submit">Rechercher</button>
+      </form>
     </div>
 
     <div class="forecast-bar">
@@ -28,17 +32,17 @@
       <button>J+4</button>
     </div>
 
-    <div id="carte">
-        <div class="ville" data-nom="Paris" data-info="Capitale de la France"></div>
-        <div class="ville" data-nom="Marseille" data-info="Deuxième plus grande ville de France"></div>
-        <!-- Ajoutez d'autres villes ici -->
+    <div id="weather-container">
+      <h2 id="city-name">Ville</h2>
+      <div id="weather-info">
+        <div id="temperature"></div>
+        <div id="pressure"></div>
+        <div id="wind-speed"></div>
       </div>
-      <div id="infos"></div>
-      
+    </div>
 
-    <!-- <div id="map-container">
-      <img id = "map" src="meteo.png" alt="">
-    </div> -->
+    <div id="map"></div>
+
   </main>
 
   <footer>
