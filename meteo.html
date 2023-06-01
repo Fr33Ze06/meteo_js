@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Météo</title>
+  <link rel="stylesheet" href="meteo.css">
+  <script src="meteo.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Météo</h1>
+  </header>
+
+  <main>
+    <div class="search-bar">
+        <form class="formSearch">
+          <input id="search-input"  class="-search" type="search" placeholder="Rechercher votre artiste" name="search">
+        </form>
+        <button>Rechercher</button>
+    </div>
+
+    <div class="forecast-bar">
+      <button class="active">Aujourd'hui</button>
+      <button>Demain</button>
+      <button>J+2</button>
+      <button>J+3</button>
+      <button>J+4</button>
+    </div>
+
+    <div id="carte">
+        <div class="ville" data-nom="Paris" data-info="Capitale de la France"></div>
+        <div class="ville" data-nom="Marseille" data-info="Deuxième plus grande ville de France"></div>
+        <!-- Ajoutez d'autres villes ici -->
+      </div>
+      <div id="infos"></div>
+      
+
+    <!-- <div id="map-container">
+      <img id = "map" src="meteo.png" alt="">
+    </div> -->
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Météo. Tous droits réservés.</p>
+  </footer>
+</body>
+</html>
