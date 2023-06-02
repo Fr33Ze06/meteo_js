@@ -7,33 +7,36 @@
     <link rel="stylesheet" href="meteo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://moment.github.io/luxon/global/luxon.min.js"></script>
     <script src="meteo.js"></script>
   </head>
   
 <body>
   <header>
-    <h1>Météo</h1>
+    <h1> <a href="meteo.html" class="logo" >Météo</a></h1>
   </header>
 
   <main>
     <div class="search-bar">
       <form id="city-form">
-        <label for="city-input">Ville :</label>
-        <input type="text" id="city-input" required>
+        <input type="text" id="city-input" required placeholder="Recherchez votre ville">
         <button type="submit">Rechercher</button>
       </form>
     </div>
 
     <div class="forecast-bar">
-      <button class="active">Aujourd'hui</button>
-      <button>Demain</button>
-      <button>J+2</button>
-      <button>J+3</button>
-      <button>J+4</button>
+      <button id="btn-today" class="forecast-btn active" data-day="0">Aujourd'hui</button>
+      <button id="btn-tomorrow" class="forecast-btn" data-day="1">Demain</button>
+      <button id="btn-day2" class="forecast-btn" data-day="2">J+2</button>
+      <button id="btn-day3" class="forecast-btn" data-day="3">J+3</button>
+      <button id="btn-day4" class="forecast-btn" data-day="4">J+4</button>
+      
     </div>
+    
 
     <div id="weather-container">
-      <h2 id="city-name">Ville</h2>
+      <h2 id="city-name"></h2>
       <div id="weather-info">
         <div id="temperature"></div>
         <div id="pressure"></div>
