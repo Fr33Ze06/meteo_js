@@ -10,20 +10,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://moment.github.io/luxon/global/luxon.min.js"></script>
     <script src="meteo.js"></script>
+    <link rel="icon" type="image/gif" href="meteo.png" />
   </head>
   
 <body>
   <header>
     <h1> <a href="meteo.html" class="logo" >Météo</a></h1>
-  </header>
-
-  <main>
     <div class="search-bar">
       <form id="city-form">
         <input type="text" id="city-input" required placeholder="Recherchez votre ville">
         <button type="submit">Rechercher</button>
       </form>
     </div>
+  </header>
+
+  <main>
 
     <div class="forecast-bar">
       <button id="btn-today" class="forecast-btn active" data-day="0">Aujourd'hui</button>
@@ -44,7 +45,9 @@
       </div>
     </div>
 
-    <div id="map"></div>
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
 
   </main>
 

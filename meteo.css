@@ -1,117 +1,124 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  html{
-    background: linear-gradient(to bottom, #45c4ff, #c9eeff);
-    height: 100%;
+html{
+  background: linear-gradient(to bottom, #45c4ff, #c9eeff);
+  height: 100%;
 }
   
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
-    
-  }
-  
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .custom-cursor {
-    cursor: crosshair;
-  }
- 
-  .logo {
-    margin: 0;
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-  }
-  
-  main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .search-bar {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: none; /* Supprimez la bordure par défaut */
-    border-radius: 10px; /* Ajoutez un bord arrondi */
-    transition: width 0.3s ease; /* Ajoutez une transition pour l'animation */
-    width: 200px; /* Largeur initiale */
-  }
-  
-  .search-bar input[type="text"]:focus {
-    outline: none; /* Supprimez la mise en évidence lors du focus */
-    width: 300px; /* Largeur augmentée lors du focus */
-  }
-  
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
 
-  #map {
-    height: 500px;
-    border-radius: 10px;
-  }
+/******************* HEADER / SEARCHBAR ************************/
   
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 5px;
+  text-align: left;
+}
   
-  .search-bar button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 10px;
-  }
-  
-  .forecast-bar {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .forecast-bar button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-right: 10px;
-    border-radius: 10px;
-  }
-  
-  .forecast-bar button.active {
-    background-color: #333;
-    color: #fff;
-  }
-  
-  #map-container {
-    text-align: center;
-    margin: 0 auto;
-    height: 400px;
-    border-radius: 5px;
-  }
+.logo {
+  margin: 0;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
 
-  .forecast-item {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  
-  
-  footer {
-    position: absolute;
-    background-color: #5f5f5f;
-    padding: 10px 10px;
-    text-align: center;
-    font-size: 14px;
-    color: #ffffff;
-    bottom: 0%;
-    width: 100%;
+.search-bar {
+  transform: translateX(-50%) translateY(-50%);
+  top: 5%;
+  position: absolute;
+  left: 50%;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none; /* Supprimez la bordure par défaut */
+  border-radius: 10px; /* Ajoutez un bord arrondi */
+  transition: width 0.3s ease; /* Ajoutez une transition pour l'animation */
+  width: 200px; /* Largeur initiale */
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none; /* Supprimez la mise en évidence lors du focus */
+  width: 300px; /* Largeur augmentée lors du focus */
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/******************* MAIN / BOUTON J ************************/
+
+main {
+  max-width: 1800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.forecast-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.forecast-bar button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-right: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.forecast-bar button.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.forecast-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/******************* MAP ************************/
+
+.map-container{
+  transform: translateX(-50%) translateY(0%);
+  margin-top: 0.5%;
+  position: absolute;
+  left: 50%;
+}
+
+#map {
+  height: 500px;
+  width: 700px;
+  border-radius: 10px;
+}
+
+.custom-cursor {
+  cursor: crosshair;
+}
+
+/******************* FOOTER ************************/
+
+footer {
+  position: absolute;
+  background-color: #5f5f5f;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #ffffff;
+  bottom: 0%;
+  width: 100%;
 }   
-  

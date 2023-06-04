@@ -19,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
     getWeatherData(city);
   });
 
+  /******************* BOUTON J ************************/
+
   const btnToday = document.getElementById('btn-today');
   btnToday.addEventListener('click', function() {
     const city = cityInput.value;
@@ -84,6 +86,8 @@ document.addEventListener("DOMContentLoaded", function() {
     activeButton.classList.add('active');
   }
 
+  /******************* RECUPERATION METEO ************************/
+
   async function getWeatherData(city, dayIndex = 0) {
     try {
       const response = await fetch(
@@ -101,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   
+  /******************* AFFICHAGE INFO METEO ************************/
 
   function updateWeatherUI(data, dayIndex) {
     const cityName = data.city.name;
@@ -146,11 +151,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   
-  
-  
-  
+  /******************* CONFIG MAP ************************/
 
-  // Configuration de la carte
   var map = L.map('map').setView([46.603354, 1.888334], 6); // Coordonnées du centre de la France et niveau de zoom initial
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
@@ -169,6 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Strasbourg", lat: 48.5734, lon: 7.7521 },
     { name: "Lyon", lat: 45.75, lon: 4.85 },
     { name: "Montpellier", lat: 43.6110, lon: 3.8767 },
+    { name: "Cherbourg", lat: 49.6412, lon: -1.6162 },
+    { name: "Sophia Antipolis", lat: 43.6150, lon: 7.0516 },
     { name: "Londres", lat: 51.5074, lon: -0.1278 },
     { name: "Madrid", lat: 40.4168, lon: -3.7038 },
     { name: "Barcelone", lat: 41.3851, lon: 2.1734 },
