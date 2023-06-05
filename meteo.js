@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Effacez les prévisions météorologiques précédentes
     weatherContainer.innerHTML = '';
   
-    // Vérifiez si la liste des prévisions contient suffisamment d'éléments pour l'indice donné
+    // Vérifie si la liste des prévisions complète
     if (dayIndex < forecastList.length / 8) {
       const startIndex = dayIndex * 8;
       const endIndex = (dayIndex + 1) * 8;
@@ -128,14 +128,14 @@ document.addEventListener("DOMContentLoaded", function() {
       // Affichez les prévisions pour chaque heure du jour sélectionné
       forecastListSlice.forEach(forecast => {
         const forecastDateTime = DateTime.fromSeconds(forecast.dt);
-        const forecastTime = forecastDateTime.toFormat('cccc HH:mm'); // Format complet : jour de la semaine en français et heure
+        const forecastTime = forecastDateTime.toFormat('cccc HH:mm');
         const forecastTemperature = forecast.main.temp;
         const forecastPressure = forecast.main.pressure;
         const forecastWindSpeed = forecast.wind.speed;
   
         // Créez un élément HTML pour afficher les prévisions
         const forecastElement = document.createElement('div');
-        forecastElement.classList.add('forecast-item'); // Ajoutez la classe CSS pour l'alignement horizontal
+        forecastElement.classList.add('forecast-item');
         forecastElement.innerHTML = `
           <h3>${forecastTime}</h3>
           <p>Température : ${forecastTemperature}°C</p>
@@ -232,36 +232,34 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Birmingham", lat: 52.4862, lon: -1.8904 },
     { name: "San Francisco", lat: 37.7749, lon: -122.4194 },
     { name: "Montreal", lat: 45.5017, lon: -73.5673 },
-    { name: "Toronto", lat: 43.6532, lon: -79.3832 }
+    { name: "Toronto", lat: 43.6532, lon: -79.3832 },
+    { name: "Athènes", lat: 37.9838, lon: 23.7275 },
+    { name: "Stockholm", lat: 59.3293, lon: 18.0686 },
+    { name: "Oslo", lat: 59.9139, lon: 10.7522 },
+    { name: "Helsinki", lat: 60.1699, lon: 24.9384 },
   ];
 
+  //Gere la map du click et du marqueur
   map.on('click', function(e) {
-    // Obtenez les coordonnées (latitude et longitude) du clic
+    
     var clickedLatLng = e.latlng;
-    // Modifier le curseur de la carte pour qu'il soit en forme de croix
-    map.getContainer().classList.add('custom-cursor');
-
-    // Supprimer le curseur personnalisé
-    map.getContainer().classList.remove('custom-cursor');
-
 
     // Parcourez la liste des villes pour vérifier si le clic correspond à une ville
     cities.forEach(function(city) {
       var cityLatLng = L.latLng(city.lat, city.lon);
-
-      // Calculez la distance entre les coordonnées du clic et les coordonnées de la ville
       var distance = clickedLatLng.distanceTo(cityLatLng);
 
-      // Vérifiez si la distance est inférieure à 10000 mètres (10 kilomètres)
       if (distance < 10000) {
-        // Supprimez le marqueur actuel s'il existe
         if (currentMarker) {
           map.removeLayer(currentMarker);
         }
 
-        // Créez le marqueur pour la ville sélectionnée et obtenez les données météorologiques
+        // Créez le marqueur
         var marker = L.marker(cityLatLng).addTo(map);
-        currentMarker = marker;
+        currentMarker = marker; 
+
+        updateActiveButton(btnToday);
+        cityInput.value = city.name;
 
         getWeatherData(city.name);
       }
