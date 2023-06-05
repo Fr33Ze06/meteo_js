@@ -13,8 +13,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
   cityForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const city = cityInput.value;
-    getWeatherData(city);
+
+    the_city=""
+    cityInput.classList.remove("not_found")
+
+    cities.forEach(function(city) {
+      if (city.name.toUpperCase() == cityInput.value.toUpperCase()){
+        the_city = city;
+      }
+    });
+
+    if (the_city != ""){
+      var cityLatLng = L.latLng(the_city.lat, the_city.lon);
+  
+      if (currentMarker != null){
+        map.removeLayer(currentMarker);
+      }
+  
+      // Créez le marqueur
+      var marker = L.marker(cityLatLng).addTo(map);
+      currentMarker = marker; 
+  
+      updateActiveButton(btnToday);
+      const city = cityInput.value;
+      getWeatherData(city);
+    }else{
+      console.log("City not found")
+      cityInput.classList.add("not_found");
+    }
+
   });
 
   /******************* BOUTON J ************************/
@@ -141,9 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
   /******************* CONFIG MAP ************************/
 
   var map = L.map('map').setView([46.603354, 1.888334], 6); // centrer la map sur la france
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
   var cities = [
     { name: "Tokyo", lat: 35.6895, lon: 139.6917 },
@@ -184,6 +209,28 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Montpellier", lat: 43.6110, lon: 3.8767 },
     { name: "Cherbourg", lat: 49.6412, lon: -1.6162 },
     { name: "Sophia Antipolis", lat: 43.6150, lon: 7.0516 },
+    { name: "Orléans", lat: 47.9022, lon: 1.9099 },
+    { name: "Angers", lat: 47.4784, lon: -0.5632 },
+    { name: "Le Mans", lat: 48.0061, lon: 0.1832 },
+    { name: "Tours", lat: 47.3941, lon: 0.6848 },
+    { name: "Le Havre", lat: 49.4938, lon: 0.1077 },
+    { name: "Rouen", lat: 49.4432, lon: 1.0999 },
+    { name: "Nantes", lat: 47.2181, lon: -1.5528 },
+    { name: "Brest", lat: 48.3904, lon: -4.4861 },
+    { name: "Nancy", lat: 48.6921, lon: 6.1844 },
+    { name: "Reims", lat: 49.2583, lon: 4.0317 },
+    { name: "Nîmes", lat: 43.8367, lon: 4.3601 },
+    { name: "Clermont-Ferrand", lat: 45.7772, lon: 3.0870 },
+    { name: "Limoges", lat: 45.8336, lon: 1.2611 },
+    { name: "La Rochelle", lat: 46.1603, lon: -1.1511 },
+    { name: "Troyes", lat: 48.2975, lon: 4.0742 },
+    { name: "Poitiers", lat: 46.5802, lon: 0.3400 },
+    { name: "Monaco", lat: 43.7384, lon: 7.4246 },
+    { name: "Aix-en-Provence", lat: 43.5297, lon: 5.4474 },
+    { name: "Avignon", lat: 43.9493, lon: 4.8055 },
+    { name: "Grenoble", lat: 45.1885, lon: 5.7245 },
+    { name: "Belfort", lat: 47.6389, lon: 6.8649 },
+    { name: "Metz", lat: 49.1193, lon:  6.1727 },
     { name: "Londres", lat: 51.5074, lon: -0.1278 },
     { name: "Madrid", lat: 40.4168, lon: -3.7038 },
     { name: "Barcelone", lat: 41.3851, lon: 2.1734 },
@@ -235,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
       var cityLatLng = L.latLng(city.lat, city.lon);
       var distance = clickedLatLng.distanceTo(cityLatLng);
 
-      if (distance < 10000) {
+      if (distance < 50000) {
         if (currentMarker) {
           map.removeLayer(currentMarker);
         }

@@ -45,6 +45,7 @@ header {
 }
 
 .search-bar input[type="text"] {
+  decoration:none;
   padding: 15px;
   font-size: 16px;
   border: none; 
@@ -56,6 +57,10 @@ header {
 .search-bar input[type="text"]:focus {
   outline: none;
   width: 300px;
+}
+
+.not_found {
+  background-color: #ff8f8f;
 }
 
 .search-bar button {
