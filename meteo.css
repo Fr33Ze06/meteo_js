@@ -47,15 +47,15 @@ header {
 .search-bar input[type="text"] {
   padding: 15px;
   font-size: 16px;
-  border: none; /* Supprimez la bordure par défaut */
-  border-radius: 10px; /* Ajoutez un bord arrondi */
-  transition: width 0.3s ease; /* Ajoutez une transition pour l'animation */
-  width: 200px; /* Largeur initiale */
+  border: none; 
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  width: 200px;
 }
 
 .search-bar input[type="text"]:focus {
-  outline: none; /* Supprimez la mise en évidence lors du focus */
-  width: 300px; /* Largeur augmentée lors du focus */
+  outline: none;
+  width: 300px;
 }
 
 .search-bar button {
@@ -74,6 +74,13 @@ header {
   transition: all 0.1s;
   -webkit-transition: all 0.1s;
 }
+
+.search-bar button:active{
+  transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+  border-bottom: none;
+}
+
 /******************** Weather Info ***************************/
 
 #weather-container-container{

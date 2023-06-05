@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let forecastList;
   let currentMarker = null;
 
-  // Au début de votre code
-
   cityForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const city = cityInput.value;
@@ -26,63 +24,55 @@ document.addEventListener("DOMContentLoaded", function() {
     const city = cityInput.value;
     updateActiveButton(this);
 
-    getWeatherData(city, 0); // Utilisez l'indice 0 pour récupérer la météo d'aujourd'hui
+    getWeatherData(city, 0); //recupere la meteo d'auj (indice 0)
   });
 
-  // Écouteur d'événement pour le bouton "Demain"
   const btnTomorrow = document.getElementById('btn-tomorrow');
   btnTomorrow.addEventListener('click', function() {
     const city = cityInput.value;
     updateActiveButton(this);
 
-    getWeatherData(city, 1); // Utilisez l'indice 1 pour récupérer la météo de demain
+    getWeatherData(city, 1);
   });
 
-  // Écouteur d'événement pour le bouton "J+2"
   const btnDay2 = document.getElementById('btn-day2');
   btnDay2.addEventListener('click', function() {
     const city = cityInput.value;
     updateActiveButton(this);
 
-    getWeatherData(city, 2); // Utilisez l'indice 2 pour récupérer la météo du jour après demain
+    getWeatherData(city, 2);
   });
 
-  // Écouteur d'événement pour le bouton "J+3"
   const btnDay3 = document.getElementById('btn-day3');
   btnDay3.addEventListener('click', function() {
     const city = cityInput.value;
     updateActiveButton(this);
 
-    getWeatherData(city, 3); // Utilisez l'indice 3 pour récupérer la météo du jour suivant J+2
+    getWeatherData(city, 3);
   });
 
-  // Écouteur d'événement pour le bouton "J+4"
   const btnDay4 = document.getElementById('btn-day4');
   btnDay4.addEventListener('click', function() {
     const city = cityInput.value;
     updateActiveButton(this);
 
-    getWeatherData(city, 4); // Utilisez l'indice 4 pour récupérer la météo du jour suivant J+3
+    getWeatherData(city, 4);
   });
 
   const forecastButtons = document.querySelectorAll('.forecast-btn');
   forecastButtons.forEach(button => {
     button.addEventListener('click', function() {
       const city = cityInput.value;
-      const dayIndex = parseInt(this.getAttribute('data-day')); // Obtenez l'indice du jour à partir de l'attribut personnalisé
-      updateActiveButton(button); // Mettez à jour la classe active du bouton
+      const dayIndex = parseInt(this.getAttribute('data-day')); // indice du jour à partir de l'attribut personnalisé
+      updateActiveButton(button);
       getWeatherData(city, dayIndex);
     });
   });
 
-  // Fonction pour mettre à jour la classe active du bouton
   function updateActiveButton(activeButton) {
-    // Supprimez la classe active de tous les boutons
     forecastButtons.forEach(button => {
       button.classList.remove('active');
     });
-
-    // Ajoutez la classe active au bouton sélectionné
     activeButton.classList.add('active');
   }
 
@@ -113,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
   
     cityNameElement.textContent = cityName;
   
-    // Effacez les prévisions météorologiques précédentes
     weatherContainer.innerHTML = '';
   
     // Vérifie si la liste des prévisions complète
@@ -122,10 +111,10 @@ document.addEventListener("DOMContentLoaded", function() {
       const endIndex = (dayIndex + 1) * 8;
       const forecastListSlice = forecastList.slice(startIndex, endIndex);
   
-      // Définissez la localisation en français
+      //localisation en français
       DateTime.local().setLocale('fr');
   
-      // Affichez les prévisions pour chaque heure du jour sélectionné
+      // Affiche les prévisions pour chaque heure du jour
       forecastListSlice.forEach(forecast => {
         const forecastDateTime = DateTime.fromSeconds(forecast.dt);
         const forecastTime = forecastDateTime.toFormat('cccc HH:mm');
@@ -133,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const forecastPressure = forecast.main.pressure;
         const forecastWindSpeed = forecast.wind.speed;
   
-        // Créez un élément HTML pour afficher les prévisions
         const forecastElement = document.createElement('div');
         forecastElement.classList.add('forecast-item');
         forecastElement.innerHTML = `
@@ -142,8 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
           <p>Pression : ${forecastPressure} hPa</p>
           <p>Vitesse du vent : ${forecastWindSpeed} m/s</p>
         `;
-  
-        // Ajoutez l'élément des prévisions à l'interface utilisateur
+
         weatherContainer.appendChild(forecastElement);
       });
     } else {
@@ -153,12 +140,11 @@ document.addEventListener("DOMContentLoaded", function() {
   
   /******************* CONFIG MAP ************************/
 
-  var map = L.map('map').setView([46.603354, 1.888334], 6); // Coordonnées du centre de la France et niveau de zoom initial
+  var map = L.map('map').setView([46.603354, 1.888334], 6); // centrer la map sur la france
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  // Ajout des marqueurs pour les villes
   var cities = [
     { name: "Tokyo", lat: 35.6895, lon: 139.6917 },
     { name: "Pékin", lat: 39.9042, lon: 116.4074 },
