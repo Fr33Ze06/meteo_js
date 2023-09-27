@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
       // Affiche les prévisions pour chaque heure du jour
       forecastListSlice.forEach(forecast => {
-        const forecastDateTime = DateTime.fromSeconds(forecast.dt);
+        const forecastDateTime = DateTime.now().setLocale('fr');//DateTime.fromSeconds(forecast.dt);
         const forecastTime = forecastDateTime.toFormat('cccc HH:mm');
         const forecastTemperature = forecast.main.temp;
         const forecastPressure = forecast.main.pressure;
